@@ -91,7 +91,7 @@ def main():
                     print("NO_OVERLAP",path, "JSON time range:",float(ts.min()),float(ts.max()))
                     continue
                 tt=ts[mask]; p=ps[mask]
-                pg=np.stack([[np.interp(tt,time_gt,p_gt[:,i,j]) for j in range(3)] for i in range(3)],axis=1)
+                pg=np.stack([np.column_stack([np.interp(tt,time_gt,p_gt[:,i,j]) for j in range(3)]) for i in range(3)],axis=1)
                 err=np.linalg.norm(p-pg,axis=-1)
                 rms=float(np.sqrt(np.mean(err**2)))
                 maxerr=float(np.max(err))
