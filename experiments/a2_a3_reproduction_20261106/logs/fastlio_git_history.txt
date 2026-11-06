@@ -1,0 +1,3 @@
+63a75bf Fix out-of-bounds writes in IEKF matching point clouds
+587797f Add IEKF matched-plane observability diagnostics
+a4bd33c Baseline: validated FAST-LIO2 A2-4B experiments
