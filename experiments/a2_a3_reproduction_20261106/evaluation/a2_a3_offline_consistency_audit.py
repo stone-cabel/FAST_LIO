@@ -323,7 +323,10 @@ def main():
         report["A2"]=a2_audit(root)
     if args.only in ("a3","all"):
         report["A3"]=a3_audit(root)
-    out=(args.out or root/"A3_1/A3_B1_three_plane/a2_a3_20261106_offline_audit.json").expanduser()
+    # Keep A2 and A3 audit outputs separate; never overwrite previous runs.
+    suffix = args.only
+    default_out = root / "A3_1/A3_B1_three_plane" / f"a2_a3_20261106_offline_audit_{suffix}.json"
+    out=(args.out or default_out).expanduser()
     out.parent.mkdir(parents=True,exist_ok=True)
     if out.exists():
         raise FileExistsError(f"Refusing to overwrite existing audit: {out}")
